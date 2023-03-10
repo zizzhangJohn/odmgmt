@@ -2,7 +2,7 @@ import { useGetCustomersQuery } from "../../../graphql/generated/schema"
 
 function CustomersDashboard() {
   const { data: customersData, loading, error } = useGetCustomersQuery();
-
+  console.log(customersData);
   if (loading) {
     return <div>loading</div>
   }
