@@ -1,14 +1,16 @@
 import { Grid, Typography } from "@mui/material";
+import OmAlert from "../../../components/elements/OmAlert";
+import OmLoading from "../../../components/elements/OmLoading";
 import { Customer, useGetCustomersQuery } from "../../../graphql/generated/schema"
 import CustomerList from "./CustomerList";
 
 export default function CustomersDashboard() {
   const { data: customersData, loading, error } = useGetCustomersQuery();
   if (loading) {
-    return <div>loading</div>
+    return <OmLoading />
   }
   if (error || !customersData) {
-    return <div>error....</div>
+    return <OmAlert message="Could not load customers data" />
   }
   const customers = customersData.customers as Customer[]
   return (

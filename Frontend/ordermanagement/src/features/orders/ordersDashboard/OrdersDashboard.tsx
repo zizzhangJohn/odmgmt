@@ -1,14 +1,16 @@
 import { Grid, Typography } from '@mui/material';
+import OmAlert from '../../../components/elements/OmAlert';
+import OmLoading from '../../../components/elements/OmLoading';
 import { Order, useGetOrdersQuery } from '../../../graphql/generated/schema'
 import OrderList from './OrderList';
 
 export default function OrdersDashboard() {
     const { data: ordersData, loading, error } = useGetOrdersQuery();
     if (loading) {
-        return <div>loading</div>
+        return <OmLoading />
     }
     if (error || !ordersData) {
-        return <div>error....</div>
+        return <OmAlert message='Could not load Orders data' />
     }
     const orders = ordersData.orders as Order[]
     return (
