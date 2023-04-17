@@ -12,11 +12,11 @@ export default function NavBar() {
                         variant='h6'
                         noWrap
                         sx={{
-                            mr: 2,
+                            mr: 1,
                             display: { xs: 'none', md: 'flex' },
                             fontFamily: "monospace",
-                            fontWeight: 700,
-                            letterSpacing: ".3rem",
+                            fontWeight: 699,
+                            letterSpacing: ".2rem",
                             color: 'inherit',
                             textDecoration: 'none'
                         }}>
