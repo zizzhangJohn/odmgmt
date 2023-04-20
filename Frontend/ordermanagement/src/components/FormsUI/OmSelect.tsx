@@ -18,8 +18,9 @@ export default function OmSelect({ name, options, otherProps }: OmSelectProps) {
         ...field,
         ...otherProps,
         select: true,
+        fullWidth: true,
         variant: "outlined",
-        onchange: handleChange,
+        onChange: handleChange,
     }
 
     if (meta && meta.touched && meta.error) {

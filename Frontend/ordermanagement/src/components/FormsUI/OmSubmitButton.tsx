@@ -1,5 +1,4 @@
-import { Button } from '@mui/material';
-import { FullWidth } from 'ag-grid-community/dist/lib/components/framework/componentTypes';
+import { Button } from '@mui/material'
 import { useFormikContext } from 'formik'
 import React from 'react'
 interface OmSubmitButtonProps {
@@ -17,7 +16,7 @@ export default function OmSubmitButton({ children, otherProps }: OmSubmitButtonP
         color: 'primary',
         variant: 'contained',
         fullWidth: true,
-        onclick: handleSubmit
+        onClick: handleSubmit
     }
     return (
         <Button {...configButton}>
