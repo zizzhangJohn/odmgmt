@@ -17,7 +17,7 @@ export default function CustomersDashboard() {
     <Grid container spacing={2}>
       <Grid item xs={12}>
         <Typography component='div' variant="h5" display='block' gutterBottom align="center">
-          customers List
+          Customers List
         </Typography>
       </Grid>
       <Grid item xs={12}>

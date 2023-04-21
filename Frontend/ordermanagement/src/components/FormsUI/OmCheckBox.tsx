@@ -1,4 +1,4 @@
-import { FormControl, FormControlLabel, FormGroup, Checkbox } from '@mui/material';
+import { FormControl, FormControlLabel, FormGroup, Checkbox, FormLabel } from '@mui/material';
 import { useField, useFormikContext } from 'formik'
 
 interface OmCheckBoxProps {
@@ -27,6 +27,7 @@ export default function OmCheckBox({ name, label, legend, otherProps }: OmCheckB
     return (
         <FormControl {...configFormControl}>
             <FormGroup>
+                <FormLabel component='legend'>{legend}</FormLabel>
                 <FormControlLabel
                     control={<Checkbox {...configCheckBox} />}
                     label={label}

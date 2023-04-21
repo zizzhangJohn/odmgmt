@@ -3,13 +3,11 @@ import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-grid.css'
 import 'ag-grid-community/styles/ag-theme-alpine.css'
 
-interface OmGridPros {
+interface OmGridProps {
     rowData: any;
     columnDefs: any
 }
-export default function OmGrid({ rowData, columnDefs }: OmGridPros) {
-
-
+export default function OmGrid({ rowData, columnDefs }: OmGridProps) {
     const defaultColDef = useMemo(() => ({ sortable: true, filter: true, resizable: true }), [])
 
     return (
