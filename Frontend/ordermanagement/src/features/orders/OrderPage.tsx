@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Customer, Order, useGetOrdersByIdQuery } from '../../graphql/generated/schema';
 import OmLoading from '../../components/elements/OmLoading';
 import OmAlert from '../../components/elements/OmAlert';
-import { Container, Grid} from '@mui/material';
+import { Container, Grid } from '@mui/material';
 import OrderForm from './orderForm/OrderForm';
 import OmHeader from '../../components/elements/OmHeader';
 
@@ -34,7 +34,7 @@ export default function OrderPage() {
         <Container>
             <Grid item xs={2}></Grid>
             <Grid item xs={8}>
-                <OmHeader header='Order Details' />
+                <OmHeader header={`Order Details - ${customer.firstName} ${customer.lastName}`} />
             </Grid>
             <Grid item xs={2}></Grid>
             <Grid item xs={12}>

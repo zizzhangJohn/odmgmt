@@ -10,6 +10,7 @@ import OmDatePicker from '../../../components/FormsUI/OmDatePicker'
 import OmTextField from '../../../components/FormsUI/OmTextField'
 import OmCheckBox from '../../../components/FormsUI/OmCheckBox'
 import OmSubmitButton from '../../../components/FormsUI/OmSubmitButton'
+import statues from '../../../data/statuses.json'
 
 interface OrderFormProps {
     order: Order
@@ -22,6 +23,8 @@ const FORM_VALIDATION = yup.object().shape({
     email: yup.string().email("Invalid email format").required("Email is required"),
     otherNotes: yup.string(),
     totalAmount: yup.number().required("Total amount is missing"),
+    isDelivery: yup.boolean(),
+    status: yup.string()
 })
 
 export default function OrderForm({ order }: OrderFormProps) {
@@ -57,7 +60,7 @@ export default function OrderForm({ order }: OrderFormProps) {
                                 <OmSelect
                                     name='status'
                                     otherProps={{ label: "Order Status" }}
-                                    options={Status}
+                                    options={statues}
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -75,7 +78,11 @@ export default function OrderForm({ order }: OrderFormProps) {
                             <Grid item xs={12}>
                                 <OmTextField
                                     name='otherNotes'
-                                    otherProps={{ label: "Other Notes" }}
+                                    otherProps={{
+                                        label: "Other Notes",
+                                        multiline: true,
+                                        rows: 4
+                                    }}
                                 />
                             </Grid>
                             <Grid item xs={12}>

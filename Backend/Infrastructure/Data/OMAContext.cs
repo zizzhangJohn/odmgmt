@@ -42,7 +42,7 @@ namespace Infrastructure.Data
                     AddressLine2 = "there",
                     City = "melbourne",
                     State = "victoria",
-                    Country = "Au"
+                    Country = "AU"
                 },
                 new Address
                 {
@@ -52,7 +52,7 @@ namespace Infrastructure.Data
                     AddressLine2 = "there2",
                     City = "melbourne2",
                     State = "victoria2",
-                    Country = "Au"
+                    Country = "AU"
                 }
             );
             modelBuilder.Entity<Order>().HasData(
@@ -65,7 +65,7 @@ namespace Infrastructure.Data
                     TotalAmount = 500,
                     DepositAmount = 10,
                     IsDelivery = true,
-                    Status = Status.Pending,
+                    Status = Status.PENDING,
                     OtherNotes = "Something new",
                     IsDeleted = false,
                 },
@@ -78,7 +78,7 @@ namespace Infrastructure.Data
                     TotalAmount = 5000,
                     DepositAmount = 250,
                     IsDelivery = true,
-                    Status = Status.Pending,
+                    Status = Status.PENDING,
                     OtherNotes = "Something new",
                     IsDeleted = false
                 }

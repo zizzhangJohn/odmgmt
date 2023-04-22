@@ -15,19 +15,14 @@ export default function OrderList({ orders }: OrderListProps) {
             field: 'id',
             width: 50,
             suppressSizeToFit: true,
-            _cellRenderer: function (params: any) {
+            cellRenderer: function (params: any) {
                 return (
                     <IconButton onClick={() => window.open(`/orders/${params.value}`, "_black")}>
                         <LaunchIcon fontSize="small" color="secondary" />
                     </IconButton>
                 );
-            },
-            get cellRenderer() {
-                return this._cellRenderer;
-            },
-            set cellRenderer(value) {
-                this._cellRenderer = value;
-            },
+            }
+
         },
         {
             field: 'customer',
