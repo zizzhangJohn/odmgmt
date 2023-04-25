@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { Order, Status } from '../../../graphql/generated/schema'
+import { Order, OrderModelInput, Status, useAddOrUpdateOrderMutation } from '../../../graphql/generated/schema'
 import { useNavigate } from 'react-router-dom'
 import * as yup from 'yup'
 import { formatDatePicker } from '../../../util/DateFormater'
-import { Container, Grid, Typography } from '@mui/material'
+import { Alert, Container, Grid, Snackbar, Typography } from '@mui/material'
 import { Form, Formik } from 'formik'
 import OmSelect from '../../../components/FormsUI/OmSelect'
 import OmDatePicker from '../../../components/FormsUI/OmDatePicker'
@@ -11,6 +11,7 @@ import OmTextField from '../../../components/FormsUI/OmTextField'
 import OmCheckBox from '../../../components/FormsUI/OmCheckBox'
 import OmSubmitButton from '../../../components/FormsUI/OmSubmitButton'
 import statues from '../../../data/statuses.json'
+import OmLoading from '../../../components/elements/OmLoading'
 
 interface OrderFormProps {
     order: Order
@@ -20,7 +21,6 @@ const FORM_VALIDATION = yup.object().shape({
     orderDate: yup.date().required("Order date is required"),
     description: yup.string().required("Description is required"),
     depositAmount: yup.number().required("Desposit amount is missing"),
-    email: yup.string().email("Invalid email format").required("Email is required"),
     otherNotes: yup.string(),
     totalAmount: yup.number().required("Total amount is missing"),
     isDelivery: yup.boolean(),
@@ -43,11 +43,45 @@ export default function OrderForm({ order }: OrderFormProps) {
         status: order.status || Status.Draft
     }
 
-    function addOrUpdateOrderDetails(values: any) {
-        console.log(values);
+    const [addOrUpdateOrder, { loading: addOrUpdateOrderLoading, error: addOrUpdateOrderError }] = useAddOrUpdateOrderMutation();
+    const handleClose = (event: any) => {
+        if (event.reason === 'clickaway') {
+            return;
+        }
+
+        setOpen(false);
+    }
+    async function addOrUpdateOrderDetails(values: OrderModelInput) {
+        const response = await addOrUpdateOrder({
+            variables: {
+                order: values
+            }
+        });
+        setOpen(true);
+
+        const order = response.data?.addOrUpdateOrder as Order;
+        if (order.id) {
+            navigate(`/orders/${order.id}`);
+        }
+    }
+    if (addOrUpdateOrderLoading) {
+        return (
+            <OmLoading />
+        )
+    }
+
+    if (addOrUpdateOrderError) {
+        return (
+            <Snackbar open={true} autoHideDuration={6000}>
+                <Alert security='error'>Error retreiving order data</Alert>
+            </Snackbar>
+        )
     }
     return (
         <Container>
+            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                <Alert onClose={handleClose} security='success' sx={{ width: "100%" }}>{!order.id ? "Order details successfully added" : "Order details successfully updated"}</Alert>
+            </Snackbar>
             <div>
                 <Formik
                     initialValues={INITIAL_FORM_STATE}
@@ -93,13 +127,13 @@ export default function OrderForm({ order }: OrderFormProps) {
                             <Grid item xs={12}>
                                 <OmTextField
                                     name='totalAmount'
-                                    otherProps={{ label: "Total Amount" }}
+                                    otherProps={{ label: "Total Amount", type: 'number' }}
                                 />
                             </Grid>
                             <Grid item xs={12}>
                                 <OmTextField
                                     name='depositAmount'
-                                    otherProps={{ label: "Deposit Amount" }}
+                                    otherProps={{ label: "Deposit Amount", type: 'number' }}
                                 />
                             </Grid>
                             <Grid item xs={12}>

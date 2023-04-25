@@ -1,6 +1,7 @@
 query GetOrdersById($id: Int!) {
   orders (where: { id: { eq: $id}}) {
     id
+    customerId
     orderDate
     description
     totalAmount

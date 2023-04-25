@@ -37,7 +37,6 @@ export default function CustomerPage() {
             <Grid item xs={8}>
                 <OmHeader header='Customer Details' />
             </Grid>
-            <Grid item xs={2}></Grid>
             <Grid item xs={12}>
                 <CustomerForm customer={customer} />
             </Grid>

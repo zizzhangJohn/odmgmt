@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
-import { Customer } from '../../../graphql/generated/schema'
+import { Customer, CustomerModelInput, useAddOrUpdateCustomerMutation } from '../../../graphql/generated/schema'
 import * as yup from 'yup'
 import { useNavigate } from 'react-router-dom'
 import { Form, Formik } from 'formik'
-import { Container, Grid, Typography } from '@mui/material'
+import { Alert, Container, Grid, Snackbar, Typography } from '@mui/material'
 import OmTextField from '../../../components/FormsUI/OmTextField'
 import OmSelect from '../../../components/FormsUI/OmSelect'
 import OmSubmitButton from '../../../components/FormsUI/OmSubmitButton'
 import countries from '../../../data/countries.json'
+import OmLoading from '../../../components/elements/OmLoading'
 
 interface CustomerFormProps {
     customer: Customer
@@ -41,13 +42,47 @@ export default function CustomerForm({ customer }: CustomerFormProps) {
         state: customer.address?.state || '',
         country: customer.address?.country || '',
     }
+    const [addOrUpdateCustomer, { loading: addOrUpdateCustomerLoading, error: addOrUpdateCustomerError }] = useAddOrUpdateCustomerMutation();
+    const handleClose = (event: any) => {
+        if (event.reason === 'clickaway') {
+            return;
+        }
 
-    function addOrUpdateCustomerDetails(values: any) {
-        console.log(values);
+        setOpen(false);
+    }
+    async function addOrUpdateCustomerDetails(values: CustomerModelInput) {
+        const response = await addOrUpdateCustomer({
+            variables: {
+                customer: values
+            }
+        });
+        setOpen(true);
+
+        const customer = response.data?.addOrUpdateCustomer as Customer;
+        if (customer.id) {
+            navigate(`/customers/${customer.id}`);
+        }
+    }
+
+    if (addOrUpdateCustomerLoading) {
+        return (
+            <OmLoading />
+        )
+    }
+
+    if (addOrUpdateCustomerError) {
+        return (
+            <Snackbar open={true} autoHideDuration={6000}>
+                <Alert security='error'>Error retreiving customer data</Alert>
+            </Snackbar>
+        )
     }
 
     return (
         <Container>
+            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                <Alert onClose={handleClose} security='success' sx={{ width: "100%" }}>{!customer.id ? "Customer details successfully added" : "Customer details successfully updated"}</Alert>
+            </Snackbar>
             <div>
                 <Formik
                     initialValues={INITIAL_FORM_STATE}
@@ -76,7 +111,7 @@ export default function CustomerForm({ customer }: CustomerFormProps) {
                             </Grid>
                             <Grid item xs={12}>
                                 <OmTextField
-                                    name='contacNumber'
+                                    name='contactNumber'
                                     otherProps={{ label: "Contact Number" }}
                                 />
                             </Grid>
