@@ -32,13 +32,14 @@ export default function OrderPage() {
 
     return (
         <Container>
-            <Grid item xs={2}></Grid>
-            <Grid item xs={8}>
-                <OmHeader header={`Order Details - ${customer.firstName} ${customer.lastName}`} />
-            </Grid>
-            <Grid item xs={2}></Grid>
-            <Grid item xs={12}>
-                <OrderForm order={order} />
+            <Grid container spacing={2}>
+                <Grid item xs={12}>
+                    <OmHeader header={`Order Details - ${customer.firstName} ${customer.lastName}`} />
+                </Grid>
+                <Grid item xs={2}></Grid>
+                <Grid item xs={12}>
+                    <OrderForm order={order} />
+                </Grid>
             </Grid>
         </Container>
     )

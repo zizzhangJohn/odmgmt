@@ -7,7 +7,7 @@ interface OmHeaderProps {
 
 export default function OmHeader({ header }: OmHeaderProps) {
     return (
-        <Typography component='div' variant='h5' display='block' gutterBottom align='center' sx={{ my: '1.5rem' }}>
+        <Typography component='div' variant='h5' display='block' gutterBottom align='center'>
             {header}
         </Typography>
     )
