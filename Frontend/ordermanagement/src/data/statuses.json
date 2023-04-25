@@ -2,5 +2,5 @@
     "COMPLETED" : "COMPLETED",
     "DRAFT" : "DRAFT",
     "PENDING" : "PENDING",
-    "SHIPPING" : "SHIPPING"
+    "SHIPPED" : "SHIPPED"
 }
