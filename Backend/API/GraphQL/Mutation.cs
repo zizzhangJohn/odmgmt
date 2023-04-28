@@ -18,5 +18,14 @@ namespace API.GraphQL
         {
             return await orderService.AddOrUpdateOrderAsync(orderModel);
         }
+
+        public async Task<bool> DeleteCustomer([Service] ICustomerService customerService, int customerId)
+        {
+            return await customerService.DeleteCustomerAsync(customerId);
+        }
+        public async Task<bool> DeleteOrder([Service] IOrderService orderService, int orderId)
+        {
+            return await orderService.DeleteOrderAsync(orderId);
+        }
     }
 }

@@ -76,5 +76,27 @@ namespace Infrastructure.Services
 
             return customer;
         }
+
+        public async Task<bool> DeleteCustomerAsync(int customerId)
+        {
+            var context = _contextFactory.CreateDbContext();
+
+            var customer = await context.Customers
+                                .Where(c => c.Id == customerId)
+                                .Include(c => c.Orders)
+                                .FirstOrDefaultAsync();
+            if (customer == null)
+            {
+                throw new Exception($"Customer with id {customer} was not found");
+            }
+
+            customer.IsDeleted = true;
+            foreach (var order in customer.Orders)
+            {
+                order.IsDeleted = true;
+            }
+
+            return await context.SaveChangesAsync() > 0;
+        }
     }
 }

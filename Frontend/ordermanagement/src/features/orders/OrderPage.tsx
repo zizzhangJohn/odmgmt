@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
-import { Customer, Order, useGetOrdersByIdQuery } from '../../graphql/generated/schema';
+import { Customer, Order, useDeleteOrderMutation, useGetOrdersByIdQuery } from '../../graphql/generated/schema';
 import OmLoading from '../../components/elements/OmLoading';
 import OmAlert from '../../components/elements/OmAlert';
 import { Container, Grid } from '@mui/material';
@@ -19,13 +19,39 @@ export default function OrderPage() {
         }
     })
 
-    if (orderLoading) {
+    const [deleteOrder, { loading: deleteOrderLoading, error: deleteOrderError }] = useDeleteOrderMutation();
+
+    async function deleteOrderDetails() {
+        const response = await deleteOrder({
+            variables: {
+                id: orderId
+            }
+        })
+        if (!response.errors) {
+            navigate('/orders');
+        }
+    }
+
+    function handleClickOpen() {
+        setOpen(true);
+    }
+
+    function handleClose() {
+        setOpen(false);
+    }
+
+    if (orderLoading || deleteOrderLoading) {
         return <OmLoading />
     }
 
     if (orderError || !orderData || !orderData.orders) {
         return <OmAlert message='Error retreiving customer data' />
     }
+
+    if (deleteOrderError) {
+        return <OmAlert message='Error deleting order data' />
+    }
+
 
     const order = orderData.orders[0] as Order;
     const customer = order.customer as Customer;
