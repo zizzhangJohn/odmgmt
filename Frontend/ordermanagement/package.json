@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "postbuild": "rm -r ../../Backend/API/wwwroot/* && mv dist/* -f ../../Backend/API/wwwroot",
     "preview": "vite preview",
     "codegen": "graphql-codegen --config codegen.ts"
   },

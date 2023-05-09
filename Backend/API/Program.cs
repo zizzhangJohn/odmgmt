@@ -35,7 +35,16 @@ builder.Services.AddCors(options =>
             .AllowAnyMethod();
     });
 });
+
+builder.Services.AddMvc(option => option.EnableEndpointRouting = false);
+
+
 var app = builder.Build();
+
+app.UseRouting();
+app.UseMvc();
+app.UseDefaultFiles();
+app.UseStaticFiles();
 
 app.UseCors(AllowSpecificOrigins);
 
@@ -44,6 +53,11 @@ app.MapGraphQL();
 app.UseGraphQLVoyager("/graphql-voyager", new VoyagerOptions
 {
     GraphQLEndPoint = "/graphql"
+});
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapFallbackToController("Index", "Website");
 });
 
 // Migration Database
