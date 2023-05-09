@@ -62,7 +62,7 @@ export default function CustomerPage() {
             <Dialog
                 open={open}
                 onClose={handleClose}
-                aria-labelledby='alert-diaglo-title'
+                aria-labelledby='alert-dialog-title'
                 aria-describedby='alert-dialog-description'
             >
                 <DialogTitle id='alert-dialog-title'>
