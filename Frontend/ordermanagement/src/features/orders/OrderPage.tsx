@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { Customer, Order, useDeleteOrderMutation, useGetOrdersByIdQuery } from '../../graphql/generated/schema';
 import OmLoading from '../../components/elements/OmLoading';
 import OmAlert from '../../components/elements/OmAlert';
-import { Container, Grid } from '@mui/material';
+import { Button, Container, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid } from '@mui/material';
 import OrderForm from './orderForm/OrderForm';
 import OmHeader from '../../components/elements/OmHeader';
+import { Delete } from '@mui/icons-material';
 
 export default function OrderPage() {
     const params = useParams();
@@ -58,9 +59,38 @@ export default function OrderPage() {
 
     return (
         <Container>
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labelledby='alert-dialog-title'
+                aria-describedby='alert-dialog-description'
+            >
+                <DialogTitle id='alert-dialog-title'>
+                    {"Delete Order Details?"}
+                </DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-descroption">
+                        You are about to remove this order. Confirm to continue or cancel
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose}>Cancel</Button>
+                    <Button onClick={deleteOrderDetails} color='error' autoFocus>Delete</Button>
+                </DialogActions>
+            </Dialog>
             <Grid container spacing={2}>
-                <Grid item xs={12}>
+                <Grid item xs={2}></Grid>
+                <Grid item xs={8}>
                     <OmHeader header={`Order Details - ${customer.firstName} ${customer.lastName}`} />
+                </Grid>
+                <Grid item xs={2}>
+                    <Button
+                        variant='outlined'
+                        color='error'
+                        startIcon={<Delete />}
+                        onClick={handleClickOpen}>
+                        Delete
+                    </Button>
                 </Grid>
                 <Grid item xs={2}></Grid>
                 <Grid item xs={12}>

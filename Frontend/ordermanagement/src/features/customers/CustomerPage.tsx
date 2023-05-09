@@ -84,7 +84,13 @@ export default function CustomerPage() {
                     <OmHeader header='Customer Details' />
                 </Grid>
                 <Grid item xs={2}>
-                    <Button variant='outlined' color='error' startIcon={<Delete />} onClick={handleClickOpen}>Delete</Button>
+                    <Button
+                        variant='outlined'
+                        color='error'
+                        startIcon={<Delete />}
+                        onClick={handleClickOpen}>
+                        Delete
+                    </Button>
                 </Grid>
                 <Grid item xs={12}>
                     <CustomerForm customer={customer} />
