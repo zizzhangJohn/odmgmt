@@ -12,7 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContextFactory<OMAContext>(options =>
 {
     // options.UseInMemoryDatabase("InMemoryDb");
-    options.UseSqlite(builder.Configuration["ConnectionStrings:DefaultConnection"]);
+    options.UseNpgsql(builder.Configuration["ConnectionStrings:DefaultConnection"]);
 });
 
 builder.Services.AddScoped<ICustomerService, CustomerService>();

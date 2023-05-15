@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 using Core.Enums;
@@ -12,7 +13,9 @@ namespace Core.Entities
         public int CustomerId { get; set; }
         public DateTime OrderDate { get; set; }
         public string Description { get; set; }
+        [Column(TypeName = "decimal(18,2)")]
         public decimal TotalAmount { get; set; }
+        [Column(TypeName = "decimal(18,2)")]
         public decimal DepositAmount { get; set; }
         public bool IsDelivery { get; set; }
         public Status Status { get; set; }

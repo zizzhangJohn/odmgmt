@@ -60,7 +60,7 @@ namespace Infrastructure.Data
                 {
                     Id = 1,
                     CustomerId = 1,
-                    OrderDate = new DateTime(2022, 10, 20),
+                    OrderDate = new DateTime(2022, 10, 20).ToUniversalTime(),
                     Description = "New Item",
                     TotalAmount = 500,
                     DepositAmount = 10,
@@ -73,7 +73,7 @@ namespace Infrastructure.Data
                 {
                     Id = 2,
                     CustomerId = 2,
-                    OrderDate = new DateTime(2022, 11, 10),
+                    OrderDate = new DateTime(2022, 11, 10).ToUniversalTime(),
                     Description = "Another Item",
                     TotalAmount = 5000,
                     DepositAmount = 250,
