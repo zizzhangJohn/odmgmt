@@ -1,4 +1,3 @@
-import React from 'react';
 import { AppBar, Box, Button, Toolbar, Typography } from '@mui/material';
 import { Container } from '@mui/system';
 import { Link } from 'react-router-dom';
@@ -6,14 +5,14 @@ import { Link } from 'react-router-dom';
 export default function NavBar() {
     return (
         <AppBar position='static'>
-            <Container maxWidth="xl">
+            <Container>
                 <Toolbar disableGutters>
                     <Typography
                         variant='h6'
                         noWrap
                         sx={{
                             mr: 1,
-                            display: { xs: 'none', md: 'flex' },
+                            display: { xs: 'flex' },
                             fontFamily: "monospace",
                             fontWeight: 699,
                             letterSpacing: ".2rem",
@@ -22,7 +21,7 @@ export default function NavBar() {
                         }}>
                         <Link className='text-link' to="/">OrderManagement App</Link>
                     </Typography>
-                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                    <Box sx={{ flexGrow: 1, display: { xs: 'flex' } }}>
                         <Button
                             key="Customers"
                             sx={{ my: 2, color: "white", display: "block" }}

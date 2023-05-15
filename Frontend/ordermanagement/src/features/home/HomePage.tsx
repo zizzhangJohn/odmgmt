@@ -1,4 +1,4 @@
-import { Container, Grid, IconButton } from "@mui/material";
+import {Button, Container, Grid} from "@mui/material";
 import OmAlert from "../../components/elements/OmAlert";
 import OmLoading from "../../components/elements/OmLoading";
 import { StatsModel, useGetStatsQuery } from "../../graphql/generated/schema";
@@ -24,27 +24,25 @@ export default function HomePage() {
         <Grid item xs={12}>
           <OmHeader header='Order Management App' />
         </Grid>
-        <Grid item xs={4}>
-          <IconButton onClick={() => window.open("/customers")}>
-            <PersonIcon fontSize="large" color='secondary' />Customers
-          </IconButton>
+        <Grid item xs={4} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+          <Button onClick={() => window.open("/customers")} fullWidth variant="text" size="large" startIcon={<PersonIcon />}>
+            Customers
+          </Button>
         </Grid>
         <Grid item xs={4}>
-          <IconButton onClick={() => window.open("/orders")}>
-            <FolderShared fontSize="large" color='secondary' />Orders
-          </IconButton>
+          <Button onClick={() => window.open("/orders")} fullWidth variant="text" size="large" startIcon={<FolderShared/>}>
+            Orders
+          </Button>
         </Grid>
         <Grid item xs={4}>
-          <IconButton onClick={() => window.open("/customers/newcustomer")}>
-            <AddCircle fontSize="large" color='secondary' />New Customer
-          </IconButton>
+          <Button onClick={() => window.open("/customers/newcustomer")} fullWidth size="large" startIcon={<AddCircle/>}>
+            New Customer
+          </Button>
         </Grid>
         <Grid item xs={12}>
           <StatsGrid stats={stats} />
         </Grid>
       </Grid>
     </Container>
-
-
   )
 }
