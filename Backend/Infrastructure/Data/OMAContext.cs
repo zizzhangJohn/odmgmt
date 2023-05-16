@@ -26,11 +26,20 @@ namespace Infrastructure.Data
                 new Customer
                 {
                     Id = 2,
-                    FirstName = "Jiang",
-                    LastName = "John",
+                    FirstName = "John",
+                    LastName = "Cena",
                     ContactNumber = "123423256",
                     IsDeleted = false,
-                    Email = "jiangjohn@gmail.com"
+                    Email = "johncena@gmail.com"
+                },
+                new Customer
+                {
+                    Id = 3,
+                    FirstName = "Conor",
+                    LastName = "McGregor",
+                    ContactNumber = "3245098734",
+                    IsDeleted = false,
+                    Email = "cmcgregor@gmail.com"
                 }
             );
             modelBuilder.Entity<Address>().HasData(
@@ -53,6 +62,16 @@ namespace Infrastructure.Data
                     City = "melbourne2",
                     State = "victoria2",
                     Country = "AU"
+                },
+                new Address
+                {
+                    Id = 3,
+                    CustomerId = 3,
+                    AddressLine1 = "123 Twin House Lane",
+                    AddressLine2 = "",
+                    City = "Verona",
+                    State = "MO",
+                    Country = "US"
                 }
             );
             modelBuilder.Entity<Order>().HasData(
@@ -79,6 +98,19 @@ namespace Infrastructure.Data
                     DepositAmount = 250,
                     IsDelivery = true,
                     Status = Status.PENDING,
+                    OtherNotes = "Something new",
+                    IsDeleted = false
+                },
+                new Order
+                {
+                    Id = 3,
+                    CustomerId = 3,
+                    OrderDate = new DateTime(2023, 3, 10).ToUniversalTime(),
+                    Description = "Another Item",
+                    TotalAmount = 3000,
+                    DepositAmount = 1400,
+                    IsDelivery = true,
+                    Status = Status.SHIPPED,
                     OtherNotes = "Something new",
                     IsDeleted = false
                 }

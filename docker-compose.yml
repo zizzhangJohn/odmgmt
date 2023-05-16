@@ -1,0 +1,24 @@
+services:
+  app:
+    build: .
+    image: odmgmtapp-image
+    container_name: odmgmtapp
+    command: dotnet API.dll
+    ports:
+      - 8080:80
+    environment:
+      - ConnectionStrings:DefaultConnection=Server=postgresDb;User Id=user;Password=secret;Database=odmgmtDb
+    depends_on:
+      - postgresDb
+  
+  postgresDb:
+    image: postgres:15-alpine
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=odmgmtDb
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=secret
+
+volumes:
+  db-data:

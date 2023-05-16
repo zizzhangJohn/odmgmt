@@ -75,6 +75,16 @@ namespace Infrastructure.Migrations
                             Country = "AU",
                             CustomerId = 2,
                             State = "victoria2"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AddressLine1 = "123 Twin House Lane",
+                            AddressLine2 = "",
+                            City = "Verona",
+                            Country = "US",
+                            CustomerId = 3,
+                            State = "MO"
                         });
                 });
 
@@ -119,10 +129,19 @@ namespace Infrastructure.Migrations
                         {
                             Id = 2,
                             ContactNumber = "123423256",
-                            Email = "jiangjohn@gmail.com",
-                            FirstName = "Jiang",
+                            Email = "johncena@gmail.com",
+                            FirstName = "John",
                             IsDeleted = false,
-                            LastName = "John"
+                            LastName = "Cena"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ContactNumber = "3245098734",
+                            Email = "cmcgregor@gmail.com",
+                            FirstName = "Conor",
+                            IsDeleted = false,
+                            LastName = "McGregor"
                         });
                 });
 
@@ -193,6 +212,19 @@ namespace Infrastructure.Migrations
                             OtherNotes = "Something new",
                             Status = 0,
                             TotalAmount = 5000m
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CustomerId = 3,
+                            DepositAmount = 1400m,
+                            Description = "Another Item",
+                            IsDeleted = false,
+                            IsDelivery = true,
+                            OrderDate = new DateTime(2023, 3, 9, 16, 0, 0, 0, DateTimeKind.Utc),
+                            OtherNotes = "Something new",
+                            Status = 3,
+                            TotalAmount = 3000m
                         });
                 });
 

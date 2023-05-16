@@ -9,7 +9,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class initialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -88,7 +88,8 @@ namespace Infrastructure.Migrations
                 values: new object[,]
                 {
                     { 1, "123456", "jamesbond@gmail.com", "James", false, "Bond" },
-                    { 2, "123423256", "jiangjohn@gmail.com", "Jiang", false, "John" }
+                    { 2, "123423256", "johncena@gmail.com", "John", false, "Cena" },
+                    { 3, "3245098734", "cmcgregor@gmail.com", "Conor", false, "McGregor" }
                 });
 
             migrationBuilder.InsertData(
@@ -97,7 +98,8 @@ namespace Infrastructure.Migrations
                 values: new object[,]
                 {
                     { 1, "SomePlace", "there", "melbourne", "AU", 1, "victoria" },
-                    { 2, "SomePlace2", "there2", "melbourne2", "AU", 2, "victoria2" }
+                    { 2, "SomePlace2", "there2", "melbourne2", "AU", 2, "victoria2" },
+                    { 3, "123 Twin House Lane", "", "Verona", "US", 3, "MO" }
                 });
 
             migrationBuilder.InsertData(
@@ -106,7 +108,8 @@ namespace Infrastructure.Migrations
                 values: new object[,]
                 {
                     { 1, 1, 10m, "New Item", false, true, new DateTime(2022, 10, 19, 16, 0, 0, 0, DateTimeKind.Utc), "Something new", 0, 500m },
-                    { 2, 2, 250m, "Another Item", false, true, new DateTime(2022, 11, 9, 16, 0, 0, 0, DateTimeKind.Utc), "Something new", 0, 5000m }
+                    { 2, 2, 250m, "Another Item", false, true, new DateTime(2022, 11, 9, 16, 0, 0, 0, DateTimeKind.Utc), "Something new", 0, 5000m },
+                    { 3, 3, 1400m, "Another Item", false, true, new DateTime(2023, 3, 9, 16, 0, 0, 0, DateTimeKind.Utc), "Something new", 3, 3000m }
                 });
 
             migrationBuilder.CreateIndex(
