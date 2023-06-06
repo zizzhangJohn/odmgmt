@@ -9,6 +9,8 @@ git clone https://github.com/zizzhangJohn/odmgmt.git
 ## go into root dir
 cd odmgmt
 
+## create .env file for production build
+echo "VITE_API_SCHEMA_URL=http://localhost:8080/graphql/" >> ./Frontend/.env.production
 ## run via docker-compose in detach mode
 ## npm install may take some time, but it's docker, it will run for sure lol
 docker-compose up -d
